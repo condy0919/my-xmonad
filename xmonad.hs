@@ -38,6 +38,7 @@ import qualified XMonad.StackSet as W
 import XMonad.Util.Cursor
 import XMonad.Util.EZConfig
 import XMonad.Util.Run
+import XMonad.Util.Scratchpad
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Types
 import XMonad.Util.Ungrab
@@ -155,6 +156,7 @@ myLayoutHook =
 
 -- My favored terminal.
 myTerminal = "alacritty"
+myScratchpadTerminal = "alacritty --class scratchpad"
 
 -- Fonts
 myFont = "xft:DejaVu Sans Mono:size=9:bold:antialias=true"
@@ -199,6 +201,12 @@ myManageHook =
     , className =? "Zeal" --> doCenterFloat
     -- if the given window is of type DOCK, reveals it
     , manageDocks
+    -- scratchpad where
+    --   distance from left edge = 12.5%
+    --   distance from top edge  = 25%
+    --   width                   = 75%
+    --   height                  = 50%
+    , scratchpadManageHook (W.RationalRect 0.125 0.25 0.75 0.5)
     ]
 
 -- Log hook
@@ -288,6 +296,7 @@ myKeybindings =
     -- Standard programs
     , ("M-r", spawn myLauncher)
     , ("M-<Return>", spawn myTerminal)
+    , ("M-S-<Return>", scratchpadSpawnActionCustom $ myScratchpadTerminal)
 
     -- Functional keys
     , ("<XF86AudioMute>", spawn "amixer -q set Master toggle")
@@ -310,7 +319,6 @@ myKeybindings =
 
     -- Windows
     , ("M-a", promote)
-    , ("M-S-<Return>", promote)
     , ("M-t", withFocused $ windows . W.sink)
     , ("M-,", sendMessage (IncMasterN 1))
     , ("M-.", sendMessage (IncMasterN (-1)))
