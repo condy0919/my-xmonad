@@ -190,6 +190,8 @@ myManageHook =
     , appName =? "desktop_window" --> doIgnore
     -- firefox download dialog
     , appName =? "Places" --> doCenterFloat
+    -- firefox navigator page
+    , appName =? "Navigator" --> doCenterFloat
     , className =? "Display" --> doCenterFloat
     -- xmonad use xmessage to show parsed errors
     , className =? "Xmessage" --> doCenterFloat
