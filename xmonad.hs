@@ -134,10 +134,12 @@ bspLayout = avoidStruts
 
 floatLayout = avoidStruts
   $ renamed [Replace "Float"]
+  $ windowNavigation
   $ simplestFloat
 
 twoPaneLayout = avoidStruts
   $ renamed [Replace "Two"]
+  $ windowNavigation
   $ TwoPane delta ratio
   where
     delta = 3/100
