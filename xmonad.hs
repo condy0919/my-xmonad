@@ -183,18 +183,18 @@ myManageHook =
   composeAll
     [ isFullscreen --> (doF W.focusDown <+> doFullFloat)
     , isDialog --> doCenterFloat
+    , appName =? "desktop_window" --> doIgnore
+    -- firefox download dialog
+    , appName =? "Places" --> doCenterFloat
     , className =? "Display" --> doCenterFloat
     -- xmonad use xmessage to show parsed errors
     , className =? "Xmessage" --> doCenterFloat
-    , appName =? "desktop_window" --> doIgnore
     -- Fast and light imlib2-based image viewer
     , className =? "feh" --> doCenterFloat
     -- a free, open source, and cross-platform media player
     , className =? "mpv" --> doCenterFloat
     -- zeal, an offline API documentation browser
     , className =? "Zeal" --> doCenterFloat
-    -- firefox download dialog
-    , resource =? "Places" --> doCenterFloat
     -- if the given window is of type DOCK, reveals it
     , manageDocks
     ]
