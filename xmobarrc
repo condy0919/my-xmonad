@@ -10,7 +10,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader% }{ %dynnetwork%  | %coretemp% | %battery% | %date% "
+   , template = "%StdinReader% }{ %dynnetwork% | %default:Master% | %coretemp% | %battery% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -73,6 +73,10 @@ Config {
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %H = hours, %M = minutes time)
         , Run Date           "<fc=#ABABAB>%F (%a) %H:%M</fc>" "date" 10
+
+        -- volume
+        , Run Volume "default" "Master" [ "--template", "Vol: <volume>% <status>"
+                                        ] 1
 
         -- StdinReader
         , Run StdinReader
