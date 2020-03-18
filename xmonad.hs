@@ -191,6 +191,7 @@ myManageHook =
     -- firefox download dialog
     , appName =? "Places" --> doCenterFloat
     , className =? "Display" --> doCenterFloat
+    , className =? "GoldenDict" --> doCenterFloat
     -- xmonad use xmessage to show parsed errors
     , className =? "Xmessage" --> doCenterFloat
     -- Fast and light imlib2-based image viewer
