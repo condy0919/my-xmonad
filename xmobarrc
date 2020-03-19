@@ -6,11 +6,12 @@ Config {
    , position =     TopW L 100
    , border =       TopB
    , borderColor =  "#646464"
+   , iconRoot = ".icons"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " <icon=.haskell.xpm/> <fc=#666666>|</fc> %StdinReader% }{ %dynnetwork% | %default:Master% | %coretemp% | %battery% | %date% "
+   , template = " <icon=haskell.xpm/> <fc=#666666>|</fc> %StdinReader% }{ %dynnetwork% | %default:Master% | %coretemp% | %battery% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
