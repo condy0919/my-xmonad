@@ -238,8 +238,6 @@ myStartupHook = do
   setDefaultCursor xC_left_ptr
   -- HiDPI solution
   spawnOnce "xrdb -merge ~/.Xresources"
-  -- xmonad doesn't provide a notification daemon
-  spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon"
   -- Screenshot app
   spawnOnce "flameshot"
   -- Clipboard
