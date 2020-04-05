@@ -148,7 +148,7 @@ twoPaneLayout = avoidStruts
 
 
 myLayoutHook =
-  showWName' showWNameTheme $ bspLayout ||| tabbedLayout ||| floatLayout ||| twoPaneLayout ||| noBorders Full
+  bspLayout ||| tabbedLayout ||| floatLayout ||| twoPaneLayout ||| noBorders Full
 
 -------------------------------------------------------------
 ------------------- user settings ---------------------------
@@ -210,26 +210,6 @@ myManageHook =
     , scratchpadManageHook (W.RationalRect 0.125 0.25 0.75 0.5)
     ]
 
--- Log hook
--- Mostly xmobar configs
-myLogHook xmproc = do
-  -- Highlight window copies
-  copies <- wsContainingCopies
-  let highlight ws | ws `elem` copies = pad . xmobarColor yellow red . wrap "*" " " $ ws
-                   | otherwise = pad ws
-  dynamicLogWithPP xmobarPP
-    { ppCurrent = xmobarColor light_cyan "" . wrap "[" "]"
-    , ppVisible = xmobarColor base0 "" . wrap "(" ")"
-    , ppUrgent = xmobarColor red "" . wrap "{" "}"
-    , ppHidden = highlight
-    , ppTitle = xmobarColor light_cyan "" . shorten 60
-    , ppSep = "   "
-    , ppOutput = hPutStrLn xmproc
-    }
-  -- fade inactive windows in current workspace
-  fadeInactiveCurrentWSLogHook fadeAmount
-  where fadeAmount = 0.9
-
 -- Startup hook
 -- Perform an arbitrary action each time xmonad starts or is restarted.
 myStartupHook = do
@@ -248,6 +228,8 @@ myStartupHook = do
   spawnOnce "feh --bg-scale ~/.xmonad/background.jpg"
   -- X compositor
   spawnOnce "picom -cCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.8"
+  -- Status bar
+  spawnOnce "polybar main"
 
 -------------------------------------------------------------
 --------------------------- mouse ---------------------------
@@ -265,7 +247,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- Focus rules
 -- True if your focus shoud follow your mouse cursor.
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = False
+myFocusFollowsMouse = True
 
 -------------------------------------------------------------
 ------------------------- keyboard --------------------------
@@ -381,8 +363,7 @@ myForbiddenKeys =
 
 -- Run xmonad with all the defaults we set up.
 main = do
-  xmproc <- spawnPipe "xmobar"
-  xmonad . docks $ -- automatically manage dock type programs, such as xmobar
+  xmonad . docks $ -- automatically manage dock type programs, such as statusbar
     ewmh $ withUrgencyHook NoUrgencyHook
       def
         { terminal = myTerminal
@@ -397,7 +378,6 @@ main = do
         , startupHook = checkKeymap def myKeybindings >> myStartupHook
         , handleEventHook = fullscreenEventHook <+> handleTimerEvent
         , layoutHook = myLayoutHook
-        , logHook = myLogHook xmproc
         } `additionalKeysP`
     myKeybindings `removeKeysP`
     myForbiddenKeys
