@@ -177,6 +177,9 @@ myScreenshot = "flameshot gui -p ~/Pictures/Screenshots"
 -- A suckless screensaver
 myScreensaver = "slock"
 
+-- my Emacs
+myEmacsClientCommand = "emacsclient -a \"\" -c"
+
 -- Workspaces
 -- The default number of workspaces and their names.
 myWorkspaces = map show [1..9]
@@ -347,6 +350,7 @@ myKeybindings =
     -- Prompts
     , ("M-m p", passPrompt promptTheme)
     , ("M-m m", manPrompt promptTheme)
+    , ("M-m e", spawn myEmacsClientCommand)
     ]
 
 
