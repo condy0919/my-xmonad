@@ -226,7 +226,7 @@ myStartupHook = do
   -- Clipboard
   spawnOnce "parcellite"
   -- Input Method
-  spawnOnce "fcitx"
+  spawnOnce "fcitx5"
   -- Set background wallpaper
   spawnOnce "feh --bg-scale ~/.xmonad/background.jpg"
   -- X compositor
