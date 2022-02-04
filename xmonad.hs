@@ -172,7 +172,7 @@ myDMenu = myLauncherCommand
 myDMenuArgs = ["-dmenu", "-i"] ++ words myLauncherConfig
 
 -- Powerful yet simple to use screenshot tool
-myScreenshot = "flameshot gui -p ~/Pictures/Screenshots"
+myScreenshot = "flameshot gui"
 
 -- A suckless screensaver
 myScreensaver = "slock"
