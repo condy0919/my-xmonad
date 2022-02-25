@@ -221,8 +221,6 @@ myStartupHook = do
   setDefaultCursor xC_left_ptr
   -- HiDPI solution
   spawnOnce "xrdb -merge ~/.Xresources"
-  -- Screenshot app
-  spawnOnce "flameshot"
   -- Clipboard
   spawnOnce "parcellite"
   -- Input Method
