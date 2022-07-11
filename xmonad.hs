@@ -13,7 +13,7 @@ import XMonad.Actions.SinkAll
 import XMonad.Actions.UpdatePointer
 import XMonad.Actions.WindowBringer
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops (ewmh, ewmhDesktopsStartup)
+import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -216,7 +216,6 @@ myManageHook =
 -- Startup hook
 -- Perform an arbitrary action each time xmonad starts or is restarted.
 myStartupHook = do
-  ewmhDesktopsStartup
   -- Set the mouse cursor style
   setDefaultCursor xC_left_ptr
   -- HiDPI solution
