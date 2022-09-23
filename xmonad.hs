@@ -98,14 +98,6 @@ tabTheme =
     , urgentBorderColor = red
     }
 
-showWNameTheme =
-  def
-    { swn_font = myWideFont
-    , swn_fade = 0.5
-    , swn_color = white
-    , swn_bgcolor = black
-    }
-
 promptTheme =
   def
     { font = myFont
