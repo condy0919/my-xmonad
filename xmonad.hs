@@ -213,7 +213,7 @@ myStartupHook = do
   -- HiDPI solution
   spawnOnce "xrdb -merge ~/.Xresources"
   -- Clipboard
-  spawnOnce "parcellite"
+  spawnOnce "clipit"
   -- Input Method
   spawnOnce "fcitx5"
   -- Set background wallpaper
