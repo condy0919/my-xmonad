@@ -38,7 +38,7 @@ import qualified XMonad.StackSet as W
 import XMonad.Util.Cursor
 import XMonad.Util.EZConfig
 import XMonad.Util.Run
-import XMonad.Util.Scratchpad
+import XMonad.Util.NamedScratchpad
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Types
 import XMonad.Util.Ungrab
@@ -148,7 +148,6 @@ myLayoutHook =
 
 -- My favored terminal.
 myTerminal = "alacritty"
-myScratchpadTerminal = "alacritty --class scratchpad"
 
 -- Fonts
 myFont = "xft:DejaVu Sans Mono:size=9:bold:antialias=true"
@@ -176,6 +175,20 @@ myEmacsClientCommand = "emacsclient -a \"\" -c"
 -- The default number of workspaces and their names.
 myWorkspaces = map show [1..9]
 
+myScratchPads =
+  [ NS
+      { name = "terminal"
+      , cmd = myTerminal ++ " --class scratchpad"
+      , query = resource =? "scratchpad"
+      , hook = floatOnCenter
+      }
+  ]
+  where
+    floatOnCenter = customFloating $ W.RationalRect l t w h
+    h = 0.9
+    w = 0.9
+    t = 0.95 - h
+    l = 0.95 - w
 
 -- Manage hook
 myManageHook =
@@ -197,12 +210,8 @@ myManageHook =
     , className =? "Zeal" --> doCenterFloat
     -- if the given window is of type DOCK, reveals it
     , manageDocks
-    -- scratchpad where
-    --   distance from left edge = 12.5%
-    --   distance from top edge  = 25%
-    --   width                   = 75%
-    --   height                  = 50%
-    , scratchpadManageHook (W.RationalRect 0.125 0.25 0.75 0.5)
+    -- scratchpads
+    , namedScratchpadManageHook myScratchPads
     ]
 
 -- Startup hook
@@ -269,7 +278,7 @@ myKeybindings =
     -- Standard programs
     , ("M-r", spawn myLauncher)
     , ("M-<Return>", spawn myTerminal)
-    , ("M-S-<Return>", scratchpadSpawnActionCustom $ myScratchpadTerminal)
+    , ("M-S-<Return>", namedScratchpadAction myScratchPads "terminal")
 
     -- Functional keys
     , ("<XF86AudioMute>", spawn "amixer -q set Master toggle")
