@@ -222,7 +222,7 @@ myStartupHook = do
   -- HiDPI solution
   spawnOnce "xrdb -merge ~/.Xresources"
   -- Clipboard
-  spawnOnce "clipit"
+  spawnOnce "greenclip daemon"
   -- Input Method
   spawnOnce "fcitx5"
   -- Set background wallpaper
@@ -274,6 +274,7 @@ myKeybindings =
     -- Take a screenshot
     -- Release xmonad's keyboard grab, so other grabbers can do their thing.
     , ("<Print>", unGrab >> spawn myScreenshot)
+    , ("M-`", spawn "rofi -modi 'clipboard:greenclip print' -show clipboard")
 
     -- Standard programs
     , ("M-r", spawn myLauncher)
