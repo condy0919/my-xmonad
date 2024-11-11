@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-deprecations #-}
+
 import qualified Data.Map as M
 import System.Exit
 
@@ -9,7 +11,7 @@ import qualified XMonad.Actions.FlexibleResize as Flex
 import XMonad.Actions.GridSelect
 import XMonad.Actions.Promote
 import XMonad.Actions.ShowText
-import XMonad.Actions.SinkAll
+import XMonad.Actions.WithAll
 import XMonad.Actions.UpdatePointer
 import XMonad.Actions.WindowBringer
 import XMonad.Hooks.DynamicLog
@@ -228,7 +230,7 @@ myStartupHook = do
   -- Set background wallpaper
   spawnOnce "feh --bg-scale ~/.xmonad/background.jpg"
   -- X compositor
-  spawnOnce "picom -cCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.8"
+  spawnOnce "picom -cbf -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.8"
   -- Status bar
   spawnOnce "polybar main"
 
