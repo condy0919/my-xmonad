@@ -1,5 +1,3 @@
-{-# OPTIONS_GHC -Wno-deprecations #-}
-
 import qualified Data.Map as M
 import System.Exit
 
@@ -43,7 +41,7 @@ import XMonad.Util.Run
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Types
-import XMonad.Util.Ungrab
+import XMonad.Operations (unGrab)
 
 -- Colors
 base03     = "#002b36"
