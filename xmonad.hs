@@ -13,7 +13,7 @@ import XMonad.Actions.WithAll
 import XMonad.Actions.UpdatePointer
 import XMonad.Actions.WindowBringer
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops (ewmh)
+import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -268,7 +268,7 @@ myKeybindings =
     [("M-n", nextWS), ("M-p", prevWS), ("M-<Escape>", toggleWS)] ++
 
     -- Quit and Restart
-    [ ("M-S-q", io (exitWith ExitSuccess))
+    [ ("M-C-q", io (exitWith ExitSuccess))
     , ("M-C-r", spawn "xmonad --recompile && xmonad --restart")
 
     -- Take a screenshot
@@ -367,7 +367,7 @@ myForbiddenKeys =
 -- Run xmonad with all the defaults we set up.
 main = do
   xmonad . docks $ -- automatically manage dock type programs, such as statusbar
-    ewmh $ withUrgencyHook NoUrgencyHook
+    ewmhFullscreen . ewmh $ withUrgencyHook NoUrgencyHook
       def
         { terminal = myTerminal
         , focusFollowsMouse = myFocusFollowsMouse
