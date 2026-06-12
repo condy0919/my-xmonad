@@ -179,7 +179,7 @@ myScratchPads =
   [ NS
       { name = "terminal"
       , cmd = myTerminal ++ " --class scratchpad"
-      , query = resource =? "scratchpad"
+      , query = className =? "scratchpad"
       , hook = floatOnCenter
       }
   ]
